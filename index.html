@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shafiin Workout Gym - fitness tools, workouts, BMI, nutrition and daily routines." />
+  <title>Shafiin Workout Gym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home"><span>SHA</span>FIIN <b>WORKOUT</b> GYM</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+    <nav id="nav">
+      <a href="#home">Home</a>
+      <a href="#tools">Tools</a>
+      <a href="#workouts">Workouts</a>
+      <a href="#nutrition">Nutrition</a>
+      <a href="#routines">Routines</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">TRAIN HARD • EAT SMART • STAY CONSISTENT</p>
+        <h1>BUILD YOUR<br><span>STRONGER SELF.</span></h1>
+        <p class="hero-text">Welcome to Shafiin Workout Gym — your simple fitness hub for body measurements, workout plans, exercise guides and practical nutrition.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#tools">START CHECKING</a>
+          <a class="btn btn-outline" href="#workouts">VIEW WORKOUTS</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="pulse">S</div>
+        <p>YOUR GOAL</p>
+        <strong>STRONGER<br>EVERY DAY.</strong>
+        <small>Consistency beats perfection.</small>
+      </div>
+    </section>
+
+    <section class="section" id="tools">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">FITNESS TOOLBOX</p>
+          <h2>CHECK YOUR <span>NUMBERS</span></h2>
+        </div>
+        <p>Use these quick calculators as a starting point. Results are estimates, not medical diagnoses.</p>
+      </div>
+
+      <div class="tool-grid">
+        <article class="tool-card">
+          <div class="tool-icon">BMI</div>
+          <h3>BMI CHECKER</h3>
+          <p>Calculate body mass index from your height and weight.</p>
+          <div class="form-row">
+            <label>Height (cm)<input id="height" type="number" min="50" max="250" placeholder="170"></label>
+            <label>Weight (kg)<input id="weight" type="number" min="20" max="400" placeholder="70"></label>
+          </div>
+          <button class="btn btn-primary full" onclick="calculateBMI()">CALCULATE BMI</button>
+          <div class="result" id="bmiResult">Enter your details above.</div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">CAL</div>
+          <h3>CALORIE ESTIMATOR</h3>
+          <p>Estimate daily calories using the Mifflin-St Jeor equation.</p>
+          <div class="form-row">
+            <label>Age<input id="age" type="number" min="13" max="100" placeholder="25"></label>
+            <label>Sex
+              <select id="sex"><option value="male">Male</option><option value="female">Female</option></select>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>Height (cm)<input id="calHeight" type="number" placeholder="170"></label>
+            <label>Weight (kg)<input id="calWeight" type="number" placeholder="70"></label>
+          </div>
+          <label>Activity
+            <select id="activity">
+              <option value="1.2">Sedentary</option>
+              <option value="1.375">Light exercise</option>
+              <option value="1.55" selected>Moderate exercise</option>
+              <option value="1.725">Hard exercise</option>
+              <option value="1.9">Very hard / athlete</option>
+            </select>
+          </label>
+          <button class="btn btn-primary full" onclick="calculateCalories()">ESTIMATE CALORIES</button>
+          <div class="result" id="calorieResult">Enter your details above.</div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">1RM</div>
+          <h3>ONE-REP MAX</h3>
+          <p>Estimate your 1-rep max using the Epley formula.</p>
+          <div class="form-row">
+            <label>Weight (kg)<input id="liftWeight" type="number" placeholder="60"></label>
+            <label>Reps<input id="liftReps" type="number" min="1" max="30" placeholder="8"></label>
+          </div>
+          <button class="btn btn-primary full" onclick="calculate1RM()">CALCULATE 1RM</button>
+          <div class="result" id="rmResult">Enter your lift and reps.</div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">HYD</div>
+          <h3>WATER TARGET</h3>
+          <p>Simple daily hydration estimate based on body weight.</p>
+          <label>Weight (kg)<input id="waterWeight" type="number" placeholder="70"></label>
+          <button class="btn btn-primary full" onclick="calculateWater()">CALCULATE WATER</button>
+          <div class="result" id="waterResult">Enter your weight.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section dark-section" id="workouts">
+      <div class="section-heading">
+        <div><p class="eyebrow">EXERCISE LIBRARY</p><h2>TRAIN WITH <span>PURPOSE</span></h2></div>
+        <p>Start with good technique, controlled movement and a weight you can handle safely.</p>
+      </div>
+      <div class="filter-bar">
+        <button class="filter active" data-filter="all">ALL</button>
+        <button class="filter" data-filter="chest">CHEST</button>
+        <button class="filter" data-filter="back">BACK</button>
+        <button class="filter" data-filter="legs">LEGS</button>
+        <button class="filter" data-filter="shoulders">SHOULDERS</button>
+        <button class="filter" data-filter="arms">ARMS</button>
+        <button class="filter" data-filter="core">CORE</button>
+      </div>
+      <div class="exercise-grid">
+        <article class="exercise-card" data-category="chest"><img src="https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?auto=format&fit=crop&w=900&q=80" alt="Bench press workout"><div><span>CHEST</span><h3>BENCH PRESS</h3><p>3–4 sets × 6–12 reps</p></div></article>
+        <article class="exercise-card" data-category="back"><img src="https://images.unsplash.com/photo-1603287681836-b174ce5074c2?auto=format&fit=crop&w=900&q=80" alt="Back workout"><div><span>BACK</span><h3>LAT PULLDOWN</h3><p>3–4 sets × 8–12 reps</p></div></article>
+        <article class="exercise-card" data-category="legs"><img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=900&q=80" alt="Leg workout"><div><span>LEGS</span><h3>BARBELL SQUAT</h3><p>3–5 sets × 5–10 reps</p></div></article>
+        <article class="exercise-card" data-category="shoulders"><img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80" alt="Shoulder workout"><div><span>SHOULDERS</span><h3>OVERHEAD PRESS</h3><p>3–4 sets × 6–12 reps</p></div></article>
+        <article class="exercise-card" data-category="arms"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=80" alt="Arm workout"><div><span>ARMS</span><h3>DUMBBELL CURL</h3><p>3 sets × 8–15 reps</p></div></article>
+        <article class="exercise-card" data-category="core"><img src="https://images.unsplash.com/photo-1598971639058-fab3c3109a00?auto=format&fit=crop&w=900&q=80" alt="Core workout"><div><span>CORE</span><h3>PLANK</h3><p>3 rounds × 30–60 sec</p></div></article>
+      </div>
+    </section>
+
+    <section class="section" id="nutrition">
+      <div class="section-heading">
+        <div><p class="eyebrow">NUTRITION GUIDE</p><h2>EAT FOR YOUR <span>GOAL</span></h2></div>
+        <p>Build meals around protein, vegetables, whole-food carbohydrates and healthy fats.</p>
+      </div>
+      <div class="nutrition-grid">
+        <article class="nutrition-card good"><div class="big-mark">✓</div><h3>EAT MORE OFTEN</h3><ul><li>Eggs, chicken, fish and lean meats</li><li>Dal, beans, chickpeas and tofu</li><li>Rice, oats, potatoes and whole grains</li><li>Vegetables and seasonal fruit</li><li>Nuts, seeds and healthy oils</li><li>Water and unsweetened drinks</li></ul></article>
+        <article class="nutrition-card limit"><div class="big-mark">!</div><h3>LIMIT</h3><ul><li>Deep-fried and heavily processed foods</li><li>Sugary drinks and excess sweets</li><li>Frequent fast food and oversized portions</li><li>Very salty packaged snacks</li><li>Alcohol, if you drink</li><li>Extreme diets or crash fasting</li></ul></article>
+        <article class="nutrition-card meal"><h3>SAMPLE DAY</h3><div class="meal-row"><b>BREAKFAST</b><span>Oats + eggs + fruit</span></div><div class="meal-row"><b>LUNCH</b><span>Rice/roti + chicken/dal + vegetables</span></div><div class="meal-row"><b>SNACK</b><span>Curd/yogurt + fruit + nuts</span></div><div class="meal-row"><b>DINNER</b><span>Protein + vegetables + carbs</span></div></article>
+      </div>
+    </section>
+
+    <section class="section routine-section" id="routines">
+      <div class="section-heading">
+        <div><p class="eyebrow">WEEKLY PROGRAMS</p><h2>YOUR <span>ROUTINE</span></h2></div>
+        <p>Choose a routine that matches your experience and recovery capacity.</p>
+      </div>
+      <div class="routine-grid">
+        <article class="routine-card featured"><span class="tag">BEGINNER</span><h3>3-DAY FULL BODY</h3><p>Great starting point for building consistency.</p><ol><li><b>MON</b> Full Body A — Squat, bench, row, core</li><li><b>WED</b> Full Body B — Deadlift, press, pulldown, legs</li><li><b>FRI</b> Full Body A — Squat, bench, row, core</li></ol></article>
+        <article class="routine-card"><span class="tag">INTERMEDIATE</span><h3>4-DAY UPPER / LOWER</h3><p>Balanced strength and muscle-building schedule.</p><ol><li><b>MON</b> Upper — Chest, back, shoulders, arms</li><li><b>TUE</b> Lower — Quads, hamstrings, glutes, calves</li><li><b>THU</b> Upper — Chest, back, shoulders, arms</li><li><b>FRI</b> Lower — Legs + core</li></ol></article>
+        <article class="routine-card"><span class="tag">FAT LOSS</span><h3>5-DAY ACTIVE</h3><p>Strength training plus manageable cardio.</p><ol><li><b>MON</b> Push + 15 min cardio</li><li><b>TUE</b> Pull + 15 min cardio</li><li><b>WED</b> Walk + mobility</li><li><b>THU</b> Legs + core</li><li><b>FRI</b> Full body + cardio</li></ol></article>
+      </div>
+    </section>
+
+    <section class="section checklist-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">TODAY'S PLAN</p><h2>DAILY <span>WORKOUT</span></h2></div>
+        <p>Tick each task as you finish it. Your progress stays in this browser.</p>
+      </div>
+      <div class="daily-card">
+        <div class="day-title"><span id="todayLabel">TODAY</span><strong>FULL BODY A</strong></div>
+        <label class="check"><input type="checkbox" data-task="warmup"><span>5–10 min warm-up + mobility</span></label>
+        <label class="check"><input type="checkbox" data-task="squat"><span>Squat — 3 × 8–10</span></label>
+        <label class="check"><input type="checkbox" data-task="bench"><span>Bench press — 3 × 8–12</span></label>
+        <label class="check"><input type="checkbox" data-task="row"><span>Row — 3 × 8–12</span></label>
+        <label class="check"><input type="checkbox" data-task="rdl"><span>Romanian deadlift — 3 × 8–12</span></label>
+        <label class="check"><input type="checkbox" data-task="core"><span>Plank — 3 × 30–60 sec</span></label>
+        <label class="check"><input type="checkbox" data-task="cooldown"><span>Cool down + stretch</span></label>
+        <div class="progress"><div id="progressBar"></div></div>
+        <p id="progressText">0% complete</p>
+        <button class="btn btn-outline" onclick="resetTasks()">RESET TODAY</button>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div><p class="eyebrow">READY?</p><h2>MAKE TODAY<br>COUNT.</h2></div>
+      <div><p>Shafiin Workout Gym</p><p>Strength • Fitness • Discipline</p><a class="btn btn-primary" href="mailto:hello@shafiinworkoutgym.com">CONTACT GYM</a></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="brand"><span>SHA</span>FIIN <b>WORKOUT</b> GYM</div>
+    <p>© <span id="year"></span> Shafiin Workout Gym. Train smart. Stay consistent.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
